@@ -20,12 +20,14 @@ header {
     align-items: center;
 
     color: #FFF;
+
+    margin-top: 15px;
 }
 
 #add {
     width: 15%;
     
-    background-color: #2e8b57;
+    background-color: #e7e7e777;
     color: #FFF;
     
     font-weight: bold;
@@ -70,7 +72,7 @@ img {
     border-radius: 15px;
     padding: 10px;
 
-    background-color: #ffffffaf;
+    background-color: #ffffff4b;
 }
 
 .book-info {
