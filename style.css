@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 html {
@@ -60,7 +61,7 @@ img {
     width: 200px;
 }
 
-.example-book {
+.book {
     display: grid;
     grid-template-rows: min-content min-content;
     justify-items: center;
