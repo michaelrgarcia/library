@@ -182,7 +182,7 @@ label[for="read"] {
     margin-right: 20px;
 }
 
-#submit-book {
+.submit-book {
     margin: -2em 100px;
     padding: 5px 10px;
     border: none;
