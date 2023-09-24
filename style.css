@@ -38,6 +38,8 @@ header {
     border-radius: 25px;
     margin-top: 7px;
     padding: 10px;
+
+    cursor: pointer;
 }
 
 main {
@@ -82,7 +84,7 @@ img {
 
 dialog {
     width: 400px;
-    height: 600px;
+    height: 400px;
 
     margin: auto auto;
 }
@@ -92,13 +94,16 @@ dialog::backdrop {
     opacity: .4;
 }
 
-dialog > form > span  {
+dialog > span  {
     display: grid;
     grid-template-columns: 4fr 0;
     align-items: center;
     
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
+    font-weight: bold;
+
+    margin-top: 10px;
 }
 
 .modal-close {
@@ -107,15 +112,19 @@ dialog > form > span  {
     width: 30px;
     height: 30px;
 
-    font-size: .8em;
+    font-size: .6em;
     font-weight: bold;
+    text-align: center;
 
     background-color: rgb(128, 117, 117);
     color: #FFF;
 
     border-radius: 20px;
     border: none;
-    margin: 10px;
+    margin-bottom: 5px;
+    margin-right: 7px;
+
+    cursor: pointer;
 }
 
 dialog > form > ul {
@@ -123,24 +132,62 @@ dialog > form > ul {
 }
 
 form {
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 1fr 6fr;
+    display: flex;
+    flex-direction: column;
 }
 
 ul {
-    font-size: 1.2em;
+    font-size: 1.4em;
 
-    margin-top: 10px;
-
-    align-self: center;
+    padding: 25px;
 }
 
 li {
-    margin-bottom: 10px;
+    margin-bottom: 35px;
+    display: flex;
+    justify-content: flex-start;
 }
 
 input {
     padding: 5px;
+    font-size: .7em;
+    
+    width: 40vw;
 }
 
+input[type="number"] {
+    width: 40px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+}
+
+label {
+    text-align: left;
+    margin-right: 10px;
+}
+
+label[for="title"],
+label[for="author"] {
+    width: 115px;
+}
+
+label[for="read"] {
+    margin-right: 20px;
+}
+
+#submit-book {
+    margin: -2em 100px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 30px;
+
+    background-color: #10b981;
+    color: #FFF;
+
+    font-weight: bold;
+    font-size: 1.1em;
+
+    cursor: pointer;
+}
