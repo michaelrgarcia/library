@@ -3,7 +3,7 @@ const addButton = document.querySelector(".add-book");
 const bookHolder = document.querySelector(".books");
 const dialogBox = document.querySelector("dialog");
 const closeButton = document.querySelector(".modal-close");
-const submitButton = document.querySelector("#submit-book");
+const submitButton = document.querySelector(".submit-book");
 
 addButton.addEventListener("click", openModal);
 closeButton.addEventListener("click", closeModal);
