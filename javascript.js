@@ -1,9 +1,11 @@
 const myLibrary = [];
-const addButton = document.querySelector("#add");
+const addButton = document.querySelector(".add-book");
 const bookHolder = document.querySelector(".books");
 const dialogBox = document.querySelector("dialog");
+const closeButton = dialogBox.querySelector(".modal-close");
 
 addButton.addEventListener("click", addBookToLibrary);
+closeButton.addEventListener("click", closeModal);
 
 function Book(author, title, pages, read) {
     this.author = author;
@@ -31,6 +33,10 @@ function displayBooks() {
         bookInfo.innerText = `Author: ${book.author}\nTitle: ${book.title}\nPages: ${book.pages}\nRead: ${book.read}`;
         displayedBook.appendChild(bookInfo);
     })
+}
+
+function closeModal() {
+    dialogBox.close();
 }
 
 
