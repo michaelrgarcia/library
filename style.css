@@ -79,7 +79,7 @@ img {
 
     font-size: 1.8em;
     font-style: italic;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .book-info {
