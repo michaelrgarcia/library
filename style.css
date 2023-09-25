@@ -25,7 +25,7 @@ header {
     height: 10%;
 }
 
-.add-book {
+.new-book {
     width: min(30vw, 170px);
     
     background-color: #10b981;
@@ -67,6 +67,7 @@ img {
     justify-self: center;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
  
     width: 250px;
     height: 300px;
@@ -76,15 +77,18 @@ img {
 
     background-color: #0000002d;
 
-    font-size: 1.8em;
+    font-size: 1.6em;
     font-style: italic;
     overflow: auto;
 }
 
 .book-info {
     text-align: center;
-    max-height: 300px;
+
+    max-height: 250px;
     max-width: 250px;
+
+    margin-bottom: 25px;
 }
 
 dialog {
@@ -193,6 +197,19 @@ label[for="read"] {
 
     font-weight: bold;
     font-size: 1.1em;
+
+    cursor: pointer;
+}
+
+.remove-book {
+    padding: 5px 50px;
+    border: none;
+    border-radius: 30px;
+
+    background-color: rgba(255, 0, 0, 0.4);
+    color: #FFF;
+
+    font-weight: bold;
 
     cursor: pointer;
 }
