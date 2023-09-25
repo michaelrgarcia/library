@@ -44,7 +44,7 @@ function displayBooks() {
 
         let bookInfo = document.createElement("div");
         bookInfo.classList.add("book-info");
-        bookInfo.innerText = `Author: ${book.author}\n\nTitle: ${book.title}\n\nPages: ${book.pages}\n\nRead: ${book.read}`;
+        bookInfo.innerText = `Author: ${book.author}\n\nTitle: ${book.title}\n\nPages: ${book.pages}\n`;
 
         displayedBook.appendChild(bookInfo);
         displayedBook.appendChild(removeButton);
