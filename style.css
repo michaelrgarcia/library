@@ -201,6 +201,17 @@ label[for="read"] {
     cursor: pointer;
 }
 
+.read-toggle {
+    display: flex;
+    gap: 20px;
+    
+    margin-bottom: 25px;
+}
+
+.read-toggle > button {
+    width: 30px;
+}
+
 .remove-book {
     padding: 5px 50px;
     border: none;
