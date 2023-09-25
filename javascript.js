@@ -1,13 +1,12 @@
 const myLibrary = [];
-const addButton = document.querySelector(".add-book");
 const bookHolder = document.querySelector(".books");
 const dialogBox = document.querySelector("dialog");
-const closeButton = document.querySelector(".modal-close");
-const submitButton = document.querySelector(".submit-book");
 
-addButton.addEventListener("click", openModal);
-closeButton.addEventListener("click", closeModal);
-submitButton.addEventListener("click", addBookToLibrary);
+window.addEventListener("click", function(event) {
+    if (event.target.className === "new-book") openModal();
+    else if (event.target.className === "modal-close") closeModal();
+    else if (event.target.className === "submit-book") addBookToLibrary();
+});
 
 function Book(author, title, pages, read) {
     this.author = author;
@@ -25,7 +24,8 @@ function addBookToLibrary() {
         let newBook = new Book(authorInput.value, titleInput.value, pageInput.value, read());
         myLibrary.push(newBook);
         displayBooks(); 
-        closeModal();   
+        closeModal();
+        clearInputs();   
     }
 }
 
@@ -36,11 +36,28 @@ function displayBooks() {
         displayedBook.classList.add("book");
         bookHolder.appendChild(displayedBook);
 
+        let removeButton = document.createElement("button");
+        removeButton.setAttribute("data-booknum", `${myLibrary.indexOf(book)}`);
+        removeButton.classList.add("remove-book");
+        removeButton.innerText = "Remove";
+        removeButton.addEventListener("click", deleteBook);
+
         let bookInfo = document.createElement("div");
         bookInfo.classList.add("book-info");
         bookInfo.innerText = `Author: ${book.author}\n\nTitle: ${book.title}\n\nPages: ${book.pages}\n\nRead: ${book.read}`;
+
         displayedBook.appendChild(bookInfo);
+        displayedBook.appendChild(removeButton);
     })
+}
+
+function deleteBook() {
+    bookHolder.replaceChildren();
+
+    let bookToRemove = this.dataset.booknum;
+    myLibrary.splice(myLibrary[bookToRemove], 1);
+
+    displayBooks();
 }
 
 function read() {
@@ -56,6 +73,15 @@ function openModal(event) {
 
 function closeModal(event) {
     dialogBox.close();
+}
+
+function clearInputs() {
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach((input) => {
+        if (input.getAttribute("type") === "checkbox") input.checked = false;
+        else input.value = "";
+    })
 }
 
 
