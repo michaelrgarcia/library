@@ -6,6 +6,11 @@ window.addEventListener("click", function(event) {
     if (event.target.className === "new-book") openModal();
     else if (event.target.className === "modal-close") closeModal();
     else if (event.target.className === "submit-book") addBookToLibrary();
+    else if (event.target.className === "read-toggle") {
+        let toggle = event.target.checked;
+
+        console.log(toggle);
+    }
 });
 
 function Book(author, title, pages, read) {
@@ -20,7 +25,9 @@ function addBookToLibrary() {
     const authorInput = document.querySelector("#author");
     const pageInput = document.querySelector("#pages");
 
-    if (titleInput.value !== "" && authorInput.value !== "" && pageInput.value !== "") {
+    if (titleInput.value !== "" &&
+        authorInput.value !== "" &&
+        pageInput.value !== "") {
         let newBook = new Book(authorInput.value, titleInput.value, pageInput.value, read());
         myLibrary.push(newBook);
         displayBooks(); 
@@ -46,6 +53,8 @@ function displayBooks() {
         bookInfo.classList.add("book-info");
         bookInfo.innerText = `Author: ${book.author}\n\nTitle: ${book.title}\n\nPages: ${book.pages}\n`;
 
+        let readOrNot
+
         displayedBook.appendChild(bookInfo);
         displayedBook.appendChild(removeButton);
     })
@@ -67,11 +76,11 @@ function read() {
     else return "No";
 }
 
-function openModal(event) {
+function openModal() {
     dialogBox.showModal();
 }
 
-function closeModal(event) {
+function closeModal() {
     dialogBox.close();
 }
 
