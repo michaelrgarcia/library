@@ -10,41 +10,30 @@
 <body>
     <header>
         <h1>Library</h1>
-        <button class="new-book">New Book</button>
+        <button type="button" class="new-book">New Book</button>
     </header>
     <main>
         <div class="books">
-            <div class="book">
-                <div class="book-info">
-                    Author: George Orwell<br><br>Title: sdfs<br><br>Pages: 2<br>
-                    <div class="read-user-ctrl">
-                        <label for="read-toggle">Read:</label>
-                        <input type="checkbox" name="read-toggle" class="read-toggle" data-toggle="off">
-                    </div>
-                </div>
-                
-                <button data-booknum="0" class="remove-book">Remove</button>
-            </div>
         </div>
     </main>
     <dialog>
         <span>
             Book Info
-            <button class="modal-close">X</button>
+            <button type="button" class="modal-close">X</button>
         </span>
         <form method="dialog">
             <ul>
                 <li>
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" required>
+                    <label for="book-title">Title:</label>
+                    <input type="text" id="book-title" name="book-title" required>
                 </li>
                 <li>
-                    <label for="author">Author:</label>
-                    <input type="text" id="author" name="author" required>
+                    <label for="book-author">Author:</label>
+                    <input type="text" id="book-author" name="book-author" required>
                 </li>
                 <li>
-                    <label for="pages"># of pages:</label>
-                    <input type="number" id="pages" name="pages" min="0" required>
+                    <label for="pages-number"># of pages:</label>
+                    <input type="number" id="pages-number" name="pages-number" min="0" required>
                 </li>
                 <li>
                     <label for="read">Have you read this?</label>
