@@ -6,11 +6,6 @@ window.addEventListener("click", function(event) {
     if (event.target.className === "new-book") openModal();
     else if (event.target.className === "modal-close") closeModal();
     else if (event.target.className === "submit-book") addBookToLibrary();
-    else if (event.target.className === "read-toggle") {
-        let toggle = event.target.checked;
-
-        console.log(toggle);
-    }
 });
 
 function Book(author, title, pages, read) {
@@ -21,14 +16,14 @@ function Book(author, title, pages, read) {
 }
 
 function addBookToLibrary() {
-    const titleInput = document.querySelector("#title");
-    const authorInput = document.querySelector("#author");
-    const pageInput = document.querySelector("#pages");
+    const titleInput = document.querySelector("#book-title");
+    const authorInput = document.querySelector("#book-author");
+    const pageInput = document.querySelector("#pages-number");
 
     if (titleInput.value !== "" &&
         authorInput.value !== "" &&
         pageInput.value !== "") {
-        let newBook = new Book(authorInput.value, titleInput.value, pageInput.value, read());
+        let newBook = new Book(authorInput.value, titleInput.value, pageInput.value, initialReadOption());
         myLibrary.push(newBook);
         displayBooks(); 
         closeModal();
@@ -41,10 +36,12 @@ function displayBooks() {
     myLibrary.forEach((book) => {
         let displayedBook = document.createElement("div");
         displayedBook.classList.add("book");
+        displayedBook.setAttribute("data-booknum", `${myLibrary.indexOf(book)}`);
         bookHolder.appendChild(displayedBook);
 
         let removeButton = document.createElement("button");
-        removeButton.setAttribute("data-booknum", `${myLibrary.indexOf(book)}`);
+
+        removeButton.setAttribute("type", "button");
         removeButton.classList.add("remove-book");
         removeButton.innerText = "Remove";
         removeButton.addEventListener("click", deleteBook);
@@ -53,8 +50,24 @@ function displayBooks() {
         bookInfo.classList.add("book-info");
         bookInfo.innerText = `Author: ${book.author}\n\nTitle: ${book.title}\n\nPages: ${book.pages}\n`;
 
-        let readOrNot
+        let readOrNot = document.createElement("div");
+        readOrNot.classList.add("read-user-ctrl")
+        let checkboxLabel = document.createElement("label");
+        checkboxLabel.innerText = "Read:";
+        checkboxLabel.setAttribute("for", "read-toggle")
+        let toggleCheckbox = document.createElement("input");
+        toggleCheckbox.setAttribute("type", "checkbox");
+        toggleCheckbox.setAttribute("name", "read-toggle");
+        toggleCheckbox.setAttribute("id", "read-toggle");
+        toggleCheckbox.setAttribute("data-read", "no");
+        toggleCheckbox.addEventListener("click", readToggle);
 
+        if (document.querySelector("#read").checked === true && book.read === "yes") toggleCheckbox.setAttribute("checked", "");
+
+        readOrNot.appendChild(checkboxLabel);
+        readOrNot.appendChild(toggleCheckbox);
+
+        bookInfo.appendChild(readOrNot)
         displayedBook.appendChild(bookInfo);
         displayedBook.appendChild(removeButton);
     })
@@ -63,17 +76,26 @@ function displayBooks() {
 function deleteBook() {
     bookHolder.replaceChildren();
 
-    let bookToRemove = this.dataset.booknum;
+    let bookToRemove = this.parentNode.dataset.booknum;
     myLibrary.splice(myLibrary[bookToRemove], 1);
 
     displayBooks();
 }
 
-function read() {
+function readToggle() {
+    let toggle = this.checked;
+    let bookToUpdate = this.parentNode.parentNode.parentNode.dataset.booknum;
+
+    if (toggle) myLibrary[bookToUpdate].read = "yes";
+    else myLibrary[bookToUpdate].read = "no";
+   
+}
+
+function initialReadOption() {
     const readOrNot = document.querySelector("#read");
 
-    if (readOrNot.checked === true) return "Yes";
-    else return "No";
+    if (readOrNot.checked === true) return "yes";
+    else return "no";
 }
 
 function openModal() {
