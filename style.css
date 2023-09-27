@@ -206,7 +206,7 @@ label[for="read"] {
     margin-bottom: -5px;
 }
 
-.read-toggle {
+#read-toggle {
     scale: 2;
 }
 
