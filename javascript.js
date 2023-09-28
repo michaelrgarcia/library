@@ -51,7 +51,7 @@ function displayBooks() {
 
         let bookInfo = document.createElement("div");
         bookInfo.classList.add("book-info");
-        bookInfo.innerText = `Author: ${book.author}\n\nTitle: ${book.title}\n\nPages: ${book.pages}\n`;
+        bookInfo.innerText = `Title: ${book.title}\n\nAuthor: ${book.author}\n\nPages: ${book.pages}\n`;
 
         let readOrNot = document.createElement("div");
         readOrNot.classList.add("read-user-ctrl")
