@@ -1,11 +1,15 @@
 const myLibrary = [];
 const bookHolder = document.querySelector(".books");
 const dialogBox = document.querySelector("dialog");
+const form = document.querySelector("form");
+const inputs = document.querySelectorAll("input");
 
 window.addEventListener("click", function(event) {
     if (event.target.className === "new-book") openModal();
-    else if (event.target.className === "modal-close") closeModal();
-    else if (event.target.className === "submit-book") addBookToLibrary();
+    if (event.target.className === "modal-close") closeModal();
+    if (event.target.className === "submit-book") addBookToLibrary();
+    if (event.target.className === "remove-book") deleteBook();
+    if (event.target.className === "read-toggle") readToggle();
 });
 
 function Book(author, title, pages, read) {
@@ -27,7 +31,7 @@ function addBookToLibrary() {
         myLibrary.push(newBook);
         displayBooks(); 
         closeModal();
-        clearInputs();   
+        clearInputs();
     }
 }
 
@@ -44,7 +48,6 @@ function displayBooks() {
         removeButton.setAttribute("type", "button");
         removeButton.classList.add("remove-book");
         removeButton.innerText = "Remove";
-        removeButton.addEventListener("click", deleteBook);
 
         let bookInfo = document.createElement("div");
         bookInfo.classList.add("book-info");
@@ -52,17 +55,16 @@ function displayBooks() {
 
         let readOrNot = document.createElement("div");
         readOrNot.classList.add("read-user-ctrl")
+
         let checkboxLabel = document.createElement("label");
         checkboxLabel.innerText = "Read:";
         checkboxLabel.setAttribute("for", "read-toggle")
+
         let toggleCheckbox = document.createElement("input");
         toggleCheckbox.setAttribute("type", "checkbox");
         toggleCheckbox.setAttribute("name", "read-toggle");
-        toggleCheckbox.setAttribute("id", "read-toggle");
+        toggleCheckbox.classList.add("read-toggle");
         toggleCheckbox.setAttribute("data-read", "no");
-        toggleCheckbox.addEventListener("click", readToggle);
-
-        if (document.querySelector("#read").checked === true && book.read === "yes") toggleCheckbox.setAttribute("checked", "");
 
         readOrNot.appendChild(checkboxLabel);
         readOrNot.appendChild(toggleCheckbox);
@@ -71,24 +73,34 @@ function displayBooks() {
         displayedBook.appendChild(bookInfo);
         displayedBook.appendChild(removeButton);
     })
+    checkboxToggle();
 }
 
 function deleteBook() {
     bookHolder.replaceChildren();
 
-    let bookToRemove = this.parentNode.dataset.booknum;
-    myLibrary.splice(myLibrary[bookToRemove], 1);
+    let bookToRemove = event.target.parentNode.dataset.booknum;
+    myLibrary.splice(bookToRemove, 1);
 
     displayBooks();
 }
 
 function readToggle() {
-    let toggle = this.checked;
-    let bookToUpdate = this.parentNode.parentNode.parentNode.dataset.booknum;
+    let toggle = event.target.checked;
+    let bookToUpdate = event.target.parentNode.parentNode.parentNode.dataset.booknum;
 
     if (toggle) myLibrary[bookToUpdate].read = "yes";
     else myLibrary[bookToUpdate].read = "no";
-   
+}
+
+function checkboxToggle() {
+    const readBoxes = document.querySelectorAll(".read-toggle");
+
+    readBoxes.forEach((box) => {
+        let bookToUpdate = box.parentNode.parentNode.parentNode.dataset.booknum;
+
+        if (myLibrary[bookToUpdate].read === "yes") box.checked = true;
+    })
 }
 
 function initialReadOption() {
@@ -100,6 +112,10 @@ function initialReadOption() {
 
 function openModal() {
     dialogBox.showModal();
+
+    inputs.forEach((input) => {
+        if (input.type !== "checkbox") input.setAttribute("required", "");
+    })
 }
 
 function closeModal() {
@@ -107,12 +123,11 @@ function closeModal() {
 }
 
 function clearInputs() {
-    const inputs = document.querySelectorAll("input");
-
     inputs.forEach((input) => {
-        if (input.getAttribute("type") === "checkbox") input.checked = false;
-        else input.value = "";
+        input.removeAttribute("required");
     })
+
+    form.reset();
 }
 
 
