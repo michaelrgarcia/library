@@ -12,11 +12,13 @@ window.addEventListener("click", function(event) {
     if (event.target.className === "read-toggle") readToggle();
 });
 
-function Book(author, title, pages, read) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(author, title, pages, read) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
 function addBookToLibrary() {
