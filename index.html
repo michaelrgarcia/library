@@ -21,7 +21,7 @@
             Book Info
             <button type="button" class="modal-close">X</button>
         </span>
-        <form method="dialog">
+        <form method="dialog" novalidate>
             <ul>
                 <li>
                     <div class="user-input">
@@ -42,8 +42,13 @@
                     </div>
                 </li>
                 <li>
-                    <label for="pages-number"># of pages:</label>
-                    <input type="number" id="pages-number" name="pages-number" min="1" required>
+                    <div class="user-input">
+                        <label for="pages-number"># of pages:</label>
+                        <input type="number" id="pages-number" name="pages-number" min="1" required>
+                    </div>
+                    <div class="error-message">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
                 </li>
                 <li>
                     <label for="read">Have you read it?</label>
@@ -51,7 +56,7 @@
                 </li>            
                 
             </ul>
-            <button type="submit" class="submit-book">Add Book</button>
+            <button class="submit-book">Add Book</button>
         </form>
     </dialog>
 </body> 
