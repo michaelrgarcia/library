@@ -24,19 +24,29 @@
         <form method="dialog">
             <ul>
                 <li>
-                    <label for="book-title">Title:</label>
-                    <input type="text" id="book-title" name="book-title" required>
+                    <div class="user-input">
+                        <label for="book-title">Title:</label>
+                        <input type="text" id="book-title" name="book-title" required>
+                    </div>
+                    <div class="error-message">
+                        <span class="error" aria-live="polite">test</span>
+                    </div>
                 </li>
                 <li>
-                    <label for="book-author">Author:</label>
-                    <input type="text" id="book-author" name="book-author" required>
+                    <div class="user-input">
+                        <label for="book-author">Author:</label>
+                        <input type="text" id="book-author" name="book-author" required>
+                    </div>
+                    <div class="error-message">
+                        <span class="error" aria-live="polite">test</span>
+                    </div>
                 </li>
                 <li>
                     <label for="pages-number"># of pages:</label>
                     <input type="number" id="pages-number" name="pages-number" min="0" required>
                 </li>
                 <li>
-                    <label for="read">Have you read this?</label>
+                    <label for="read">Have you read it?</label>
                     <input type="checkbox" id="read" name="read">
                 </li>            
                 
