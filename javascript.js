@@ -165,9 +165,13 @@ function showError() {
         let nearestErrorMessage = input.parentNode.parentNode.querySelector(".error-message > .error");
 
         if (input.validity.valueMissing) {
-            nearestErrorMessage.textContent = "You need to enter something.";
+            if (input.type === "number") {
+                nearestErrorMessage.textContent = "Enter a number greater than 0";
+            } else {
+                nearestErrorMessage.textContent = "Enter some text";
+            }
         } else if (input.validity.rangeUnderflow) {
-            nearestErrorMessage.textContent = "Value needs to be greater than 0.";
+            nearestErrorMessage.textContent = "Number needs to be greater than 0";
         } 
     });
 }
