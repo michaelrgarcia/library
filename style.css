@@ -152,7 +152,20 @@ ul {
 }
 
 li {
+    display: flex;
     margin-bottom: 35px;
+}
+
+li:has(input[type="text"]) {
+    flex-direction: column;
+}
+
+li:has(input[type="number"]), 
+li:has(input[type="checkbox"]) {
+    justify-content: flex-start;
+}
+
+.user-input {
     display: flex;
     justify-content: flex-start;
 }
@@ -162,6 +175,20 @@ input {
     font-size: .7em;
     
     width: 40vw;
+
+    border: 1px solid;
+}
+
+input:focus {
+    outline: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input:focus:invalid {
+    outline: 1px solid rgba(255, 0, 0, 0.5)
 }
 
 input[type="number"] {
@@ -170,6 +197,10 @@ input[type="number"] {
 
 input[type="checkbox"] {
     width: 20px;
+}
+
+input[type="checkbox"]:focus {
+    outline: none;
 }
 
 label {
@@ -222,4 +253,10 @@ label[for="read"] {
     font-weight: bold;
 
     cursor: pointer;
+}
+
+.error {
+    font-size: .7em;
+    
+    color: red;
 }
