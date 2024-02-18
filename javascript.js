@@ -4,14 +4,6 @@ const dialogBox = document.querySelector("dialog");
 const form = document.querySelector("form");
 const inputs = document.querySelectorAll("input");
 
-window.addEventListener("click", function(event) {
-    if (event.target.className === "new-book") openModal();
-    if (event.target.className === "modal-close") closeModal();
-    if (event.target.className === "submit-book") addBookToLibrary();
-    if (event.target.className === "remove-book") deleteBook();
-    if (event.target.className === "read-toggle") readToggle();
-});
-
 class Book {
     constructor(author, title, pages, read) {
         this.author = author;
@@ -20,6 +12,39 @@ class Book {
         this.read = read;
     }
 }
+
+window.addEventListener("click", function(event) {
+    if (event.target.className === "new-book") openModal();
+    if (event.target.className === "modal-close") closeModal();
+    if (event.target.className === "submit-book") addBookToLibrary();
+    if (event.target.className === "remove-book") deleteBook();
+    if (event.target.className === "read-toggle") readToggle();
+});
+
+inputs.forEach((input) => {
+    if (input.type === "text" || input.type === "number") {
+        input.addEventListener("input", function(event) {
+            let nearestErrorMessage = event.target.parentNode.parentNode.querySelector(".error-message > .error");
+
+            if (input.validity.valid) {
+                nearestErrorMessage.textContent = "";
+            } else {
+                showError();
+            }
+        });
+    }
+});
+
+form.addEventListener("submit", function(event) {
+    inputs.forEach((input) => {
+        if (input.type === "text" || input.type === "number") {
+            if (!input.validity.valid) {
+                showError();
+                event.preventDefault();
+            }
+        }
+    });
+});
 
 function addBookToLibrary() {
     const titleInput = document.querySelector("#book-title");
@@ -127,11 +152,22 @@ function closeModal() {
 function clearInputs() {
     inputs.forEach((input) => {
         input.removeAttribute("required");
+
+        let nearestErrorMessage = input.parentNode.parentNode.querySelector(".error-message > .error");
+        nearestErrorMessage.textContent = "";
     })
 
     form.reset();
 }
 
+function showError() {
+    inputs.forEach((input) => {
+        let nearestErrorMessage = input.parentNode.parentNode.querySelector(".error-message > .error");
 
-
-
+        if (input.validity.valueMissing) {
+            nearestErrorMessage.textContent = "You need to enter something.";
+        } else if (input.validity.rangeUnderflow) {
+            nearestErrorMessage.textContent = "Value needs to be greater than 0.";
+        } 
+    });
+}
