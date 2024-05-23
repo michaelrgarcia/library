@@ -8,4 +8,4 @@ It will (temporarily) allow users to "keep track" of books they read by giving t
 
 I will most likely come back to this project later to add some sort of data storage for the user's options.
 
-You can find it here: https://leavesturninsideyou.github.io/library/
+You can find it here: https://michaelrgarcia.github.io/library/
